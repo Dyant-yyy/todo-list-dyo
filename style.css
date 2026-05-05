@@ -1,8 +1,13 @@
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    background: 
+    linear-gradient(rgba(168, 167, 167, 0.8), rgba(161, 160, 160, 0.8)),
+    url('Getty Center, LA_.jpg');
+    background-size: cover;
+    background-position: center;
     text-align: center;
     margin-top: 50px;
+    transition: 0.3s;
 }
 
 h1 {
@@ -10,13 +15,14 @@ h1 {
     margin-bottom: 20px;
 }
 
-input {
+input, select {
     padding: 12px;
     width: 220px;
     border-radius: 8px;
     border: none;
     outline: none;
     margin-right: 10px;
+    margin-bottom: 10px; 
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -28,6 +34,7 @@ button {
     border-radius: 8px;
     cursor: pointer;
     transition: 0.3s;
+    margin: 5px; 
 }
 
 button:hover {
@@ -42,7 +49,7 @@ ul {
 }
 
 li {
-    background: white;
+    background: rgb(251, 252, 252);
     margin: 10px auto;
     padding: 12px 15px;
     width: 260px;
@@ -52,19 +59,22 @@ li {
     align-items: center;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 
-    /* animasi masuk */
     animation: fadeIn 0.3s ease;
     transition: 0.3s;
 }
 
 li:hover {
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.03);
 }
 
 li button {
     background: red;
     padding: 5px 8px;
     border-radius: 5px;
+}
+
+li button:hover {
+    background: darkred;
 }
 
 @keyframes fadeIn {
@@ -77,20 +87,23 @@ li button {
         transform: translateY(0);
     }
 }
-/* DARK MODE */
+
 .dark {
-    background: #121212;
-    color: #eee;
+    background: url(pexels-pnw-prod-8250951.jpg);
+    background-size: cover;
+    background-position: center;
 }
 
 .dark h1 {
     color: #fff;
 }
 
-.dark input {
+.dark input,
+.dark select {
     background: #1e1e1e;
     color: white;
 }
+
 
 .dark li {
     background: #1e1e1e;
@@ -98,9 +111,12 @@ li button {
 }
 
 .dark button {
-    background: #333;
+    background: #0b0b0b;
 }
 
 .dark button:hover {
     background: #555;
+}
+.dark p {
+    color: #eee;
 }

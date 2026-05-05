@@ -2,16 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <p>Made by Dyo 🚀</p>
+    <title>Todo List</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Todo List</h1>
-    
-    <button onclick="toggleDarkMode()" id="darkBtn">🌙 Dark Mode</button>
+    <p>Made by Dyo 🚀</p>
+
+    <h1>REMEMBER DEADLINE</h1>
+
     <input type="text" id="inputTugas" placeholder="Masukkan tugas..." onkeypress="if(event.key==='Enter') tambahTugas()">
+    <input type="date" id="deadline">
+
+    <select id="kategori">
+        <option value="Kuliah">Kuliah</option>
+        <option value="Pribadi">Pribadi</option>
+        <option value="Coding">Coding</option>
+    </select>
+
     <button onclick="tambahTugas()">Tambah</button>
+    <button onclick="toggleDarkMode()" id="darkBtn">🌙 Dark Mode</button>
+
+    <br><br>
+
+    <input type="text" id="search" placeholder="Cari tugas..." oninput="render()">
+
+    <div>
+        <button onclick="setFilter('all')">All</button>
+        <button onclick="setFilter('active')">Active</button>
+        <button onclick="setFilter('done')">Done</button>
+    </div>
+
+    <p id="progress"></p>
 
     <ul id="listTugas"></ul>
 

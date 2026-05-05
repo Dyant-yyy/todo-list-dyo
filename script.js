@@ -1,20 +1,68 @@
 let todos = JSON.parse(localStorage.getItem("todos")) || [];
+let filter = "all";
 
 function simpanData() {
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 
+function setFilter(f) {
+    filter = f;
+    render();
+}
+
+function tambahTugas() {
+    const teks = document.getElementById("inputTugas").value;
+    const kategori = document.getElementById("kategori").value;
+    const deadline = document.getElementById("deadline").value;
+
+    if (teks === "") return;
+
+    todos.push({
+        text: teks,
+        selesai: false,
+        kategori: kategori,
+        deadline: deadline
+    });
+
+    simpanData();
+    render();
+
+    document.getElementById("inputTugas").value = "";
+}
+
 function render() {
     const list = document.getElementById("listTugas");
+    const search = document.getElementById("search").value.toLowerCase();
+
     list.innerHTML = "";
 
+    let selesaiCount = 0;
+
     todos.forEach((tugas, index) => {
+
+        if (filter === "active" && tugas.selesai) return;
+        if (filter === "done" && !tugas.selesai) return;
+        if (!tugas.text.toLowerCase().includes(search)) return;
+
         const li = document.createElement("li");
-        li.textContent = tugas.text;
+
+        let teks = `${tugas.text} (${tugas.kategori})`;
+
+        if (tugas.deadline) {
+            teks += ` - ${tugas.deadline}`;
+        }
+
+        li.textContent = teks;
 
         if (tugas.selesai) {
-           li.style.textDecoration = tugas.selesai ? "line-through" : "none";
-li.style.opacity = tugas.selesai ? "0.5" : "1";
+            li.style.textDecoration = "line-through";
+            li.style.opacity = "0.5";
+            selesaiCount++;
+        }
+
+       
+        if (tugas.deadline && new Date(tugas.deadline) < new Date() && !tugas.selesai) {
+            li.style.color = "red";
         }
 
         li.onclick = function () {
@@ -23,37 +71,24 @@ li.style.opacity = tugas.selesai ? "0.5" : "1";
             render();
         };
 
-        const tombolHapus = document.createElement("button");
-        tombolHapus.textContent = "❌";
+        const del = document.createElement("button");
+        del.textContent = "❌";
 
-        tombolHapus.onclick = function (e) {
+        del.onclick = function (e) {
             e.stopPropagation();
             todos.splice(index, 1);
             simpanData();
             render();
         };
 
-        li.appendChild(tombolHapus);
+        li.appendChild(del);
         list.appendChild(li);
     });
+
+    document.getElementById("progress").textContent =
+        `Progress: ${selesaiCount} / ${todos.length}`;
 }
 
-function tambahTugas() {
-    const input = document.getElementById("inputTugas");
-    const teks = input.value;
-
-    if (teks === "") return;
-
-    todos.push({
-        text: teks,
-        selesai: false
-    });
-
-    simpanData();
-    render();
-
-    input.value = "";
-}
 function toggleDarkMode() {
     document.body.classList.toggle("dark");
 
@@ -67,5 +102,10 @@ function toggleDarkMode() {
         btn.textContent = "🌙 Dark Mode";
     }
 }
-// tampilkan saat pertama kali buka
+
+if (localStorage.getItem("mode") === "dark") {
+    document.body.classList.add("dark");
+}
+
+
 render();
