@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List Dyo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Todo List</h1>
+    
+    <button onclick="toggleDarkMode()" id="darkBtn">🌙 Dark Mode</button>
+    <input type="text" id="inputTugas" placeholder="Masukkan tugas..." onkeypress="if(event.key==='Enter') tambahTugas()">
+    <button onclick="tambahTugas()">Tambah</button>
+
+    <ul id="listTugas"></ul>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

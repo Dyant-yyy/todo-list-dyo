@@ -1,0 +1,106 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 12px;
+    width: 220px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    margin-right: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+button {
+    padding: 12px 18px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #43a047;
+    transform: scale(1.05);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+li {
+    background: white;
+    margin: 10px auto;
+    padding: 12px 15px;
+    width: 260px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    /* animasi masuk */
+    animation: fadeIn 0.3s ease;
+    transition: 0.3s;
+}
+
+li:hover {
+    transform: translateY(-3px);
+}
+
+li button {
+    background: red;
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* DARK MODE */
+.dark {
+    background: #121212;
+    color: #eee;
+}
+
+.dark h1 {
+    color: #fff;
+}
+
+.dark input {
+    background: #1e1e1e;
+    color: white;
+}
+
+.dark li {
+    background: #1e1e1e;
+    color: white;
+}
+
+.dark button {
+    background: #333;
+}
+
+.dark button:hover {
+    background: #555;
+}
